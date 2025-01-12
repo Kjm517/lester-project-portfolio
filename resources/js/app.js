@@ -7,7 +7,9 @@ import Education from './components/Education.vue';
 import Portfolio from './components/Portfolio.vue';
 import Awards from './components/Awards.vue';
 import Contacts from './components/Contacts.vue';
+import Admin from './components/Admin.vue';
 import router from './routers/index';
+
 
 const app = createApp({
     components: {
@@ -16,7 +18,8 @@ const app = createApp({
         Education,
         Portfolio,
         Awards,
-        Contacts
+        Contacts,
+        Admin
     },
 });
 

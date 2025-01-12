@@ -10,6 +10,7 @@
         <header-top></header-top>
         <router-view></router-view>
         <contacts></contacts>
+        <!-- <admin></admin> -->
     </div>
 
     @vite('resources/js/app.js')
