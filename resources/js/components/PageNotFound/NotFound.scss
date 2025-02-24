@@ -1,0 +1,32 @@
+$light-bg-start: #e2e8f0;
+$light-bg-end: #e5e7eb;
+$dark-bg-start: #1f2937;
+$dark-bg-end: #111827;
+$btn-hover-light: #f3e8ff;
+$btn-dark: #374151;
+$btn-dark-hover: #4b5563;
+
+.custom-bg {
+    background: linear-gradient(to right, $light-bg-start, $light-bg-end);
+
+    @media (prefers-color-scheme: dark) {
+        background: linear-gradient(to right, $dark-bg-start, $dark-bg-end);
+        color: white !important;
+    }
+}
+
+.custom-btn {
+    &:hover {
+        background-color: $btn-hover-light !important;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        background-color: $btn-dark !important;
+        color: white !important;
+
+        &:hover {
+            background-color: $btn-dark-hover !important;
+        }
+    }
+}

@@ -1,11 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
-Route::get('/{any}', function () {
+Route::get('/', function () {
     return view('welcome');
-})->where('any', '.*');
+});
 
-Route::get('/dbconn', function() {
+// Other routes
+Route::get('/dbconn', function () {
     return view('dbconn');
 });
+
+// Catch-all route (must be last)
+Route::get('/{pathMatch}', function () {
+    return view('welcome');
+})->where('pathMatch', '.*');
+
+?>
