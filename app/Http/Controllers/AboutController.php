@@ -57,24 +57,21 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $about = About::find($id);
-
-        if (!$about) {
-            return response()->json(['message' => 'Record not found'], 404);
-        }
-
-        $request->validate([
-            'description' => 'required|string|max:255',
-        ]);
-
+    public function update(Request $request, $id) {
+        $about = About::findOrFail($id);
         $about->description = $request->description;
+    
+        $skillsArray = $request->has('skills') 
+            ? (is_array($request->skills) ? $request->skills : explode(',', $request->skills))
+            : [];
+    
+        $about->skills = implode(',', $skillsArray);
+    
         $about->save();
-
-        return response()->json(['message' => 'Updated successfully', 'about' => $about], 200);
+    
+        return response()->json(['message' => 'Updated successfully', 'about' => $about]);
     }
-
+       
     /**
      * Remove the specified resource from storage.
      */

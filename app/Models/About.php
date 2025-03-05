@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class About extends Model
 {
-    protected $fillable = ['description', 'skills']; // Allow 'description' and 'skills' as input
+    protected $fillable = ['description', 'skills'];
     public $timestamps = false;
 }
 ?>

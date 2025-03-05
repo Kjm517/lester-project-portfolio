@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
 {
-    // protected $fillable = ['position', 'company', 'year']; 
     protected $table = 'experience';
     public $timestamps = false;
+
+    protected $fillable = ['position', 'company', 'start_year', 'start_month', 'end_year', 'end_month'];
 }
+
+?>

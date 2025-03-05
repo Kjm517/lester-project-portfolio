@@ -19,7 +19,10 @@ class ExperienceController extends Controller
         $validated = $request->validate([
             'position' => 'required|string|max:255',
             'company' => 'required|string|max:255',
-            'year' => 'required|date',
+            'start_year' => 'required|integer|min:1900|max:2100',
+            'start_month' => 'required|integer|min:1|max:12',
+            'end_year' => 'required|integer|min:1900|max:2100',
+            'end_month' => 'required|integer|min:1|max:12',
         ]);
 
         $experience = Experience::create($validated);
@@ -29,22 +32,27 @@ class ExperienceController extends Controller
 
     public function update(Request $request, $id)
     {
-        $experience = Experience::find($id);
+        $experience = Experience::find($id); // ✅ Correct: Use Experience model
 
         if (!$experience) {
             return response()->json(['message' => 'Experience not found'], 404);
         }
 
-        $validated = $request->validate([
-            'position' => 'required|string|max:255',
-            'company' => 'required|string|max:255',
-            'year' => 'required|date',
+        $request->validate([
+            'position' => 'sometimes|string|max:255',
+            'company' => 'sometimes|string|max:255',
+            'start_year' => 'sometimes|integer|min:1900|max:2100',
+            'start_month' => 'sometimes|integer|min:1|max:12',
+            'end_year' => 'sometimes|integer|min:1900|max:2100',
+            'end_month' => 'sometimes|integer|min:1|max:12',
         ]);
 
-        $experience->update($validated);
+        $experience->update($request->all());
 
-        return response()->json(['message' => 'Experience updated', 'experience' => $experience], 200);
+        return response()->json(['message' => 'Experience updated successfully', 'experience' => $experience]);
     }
+
+
 
     public function destroy($id)
     {
